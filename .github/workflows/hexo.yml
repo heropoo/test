@@ -12,18 +12,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Clean
-      uses: heowc/action-hexo@1.0.2
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Node and Hexo
+      uses: actions/setup-node@v1
       with:
-        args: clean
-    - name: Generate
-      uses: heowc/action-hexo@1.0.2
-      with:
-        args: generate
-    - name: Deploy
-      uses: heowc/action-hexo@1.0.2
-      env:
-        EMAIL: aiyouyou1000@163.com
-        NAME: heropoo
-      with:
-        args: deploy
+        node-version: '10.x'
+    - run: npm install
+    - run: hexo g
