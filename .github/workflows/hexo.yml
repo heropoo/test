@@ -1,0 +1,28 @@
+name: Test
+
+# on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clean
+      uses: heowc/action-hexo@master
+      with:
+        args: clean
+    - name: Generate
+      uses: heowc/action-hexo@master
+      with:
+        args: generate
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@master
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BRANCH: master
+        FOLDER: public

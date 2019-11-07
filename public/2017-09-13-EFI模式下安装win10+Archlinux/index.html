@@ -1,0 +1,2147 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.0.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>EFI模式下安装win10+Archlinux - 满江风雪</title>
+
+
+    <meta name="description" content="就最近一次安装Archlinux做一次笔记吧。别问我为什么没事就装arch，因为他是arch  😜">
+<meta name="keywords" content="Linux,EFI,Archlinux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EFI模式下安装win10+Archlinux">
+<meta property="og:url" content="https:&#x2F;&#x2F;metmoon.com&#x2F;2017-09-13-EFI%E6%A8%A1%E5%BC%8F%E4%B8%8B%E5%AE%89%E8%A3%85win10+Archlinux&#x2F;index.html">
+<meta property="og:site_name" content="满江风雪">
+<meta property="og:description" content="就最近一次安装Archlinux做一次笔记吧。别问我为什么没事就装arch，因为他是arch  😜">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;metmoon.com&#x2F;images&#x2F;og_image.png">
+<meta property="og:updated_time" content="2019-11-01T02:16:34.409Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;metmoon.com&#x2F;images&#x2F;og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="EFI模式下安装win10+Archlinux" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-09-13T14:49:50.000Z">2017-09-13</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 分钟 读完 (大约 1158 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                EFI模式下安装win10+Archlinux
+            
+        </h1>
+        <div class="content">
+            <p>就最近一次安装Archlinux做一次笔记吧。别问我为什么没事就装arch，因为他是arch  😜 </p>
+<p>Win10安装就略过了，我的电脑linux老换，win10始终稳稳的在那躺着，一动不动。。。</p>
+<p>因为win10是提前安装好的，而他是使用EFI模式安装的 我们在win10下在硬盘上给咋arch挪出点空间来，几十个GB就行。看你硬盘大小了和心情了。</p>
+<h3 id="启动liveCD"><a href="#启动liveCD" class="headerlink" title="启动liveCD"></a>启动liveCD</h3><p>用在<a href="https://www.archlinux.org/download/" target="_blank" rel="noopener">官网</a>或者<a href="http://mirrors.163.com/archlinux/iso/2017.09.01/" target="_blank" rel="noopener">163</a>源下载最新的liveCD镜像（比如最新是archlinux-2017.09.01-x86_64.iso），刻录到u盘，我喜欢用<a href="http://rufus.akeo.ie/" target="_blank" rel="noopener">rufs</a>，这个不大于1M的小工具很简单强大我喜欢。 当然了，熟悉linux的同学可以用<a href="https://wiki.archlinux.org/index.php/Core_utilities#dd" target="_blank" rel="noopener">dd</a>命令。</p>
+<p>插上u盘，重启到liveCD里面。里面也是个没桌面的shell系统。</p>
+<h3 id="看Archlinux-wiki"><a href="#看Archlinux-wiki" class="headerlink" title="看Archlinux wiki"></a>看Archlinux wiki</h3><p>在开始之前最好还是看看<a href="https://wiki.archlinux.org/index.php/Installation_guide" target="_blank" rel="noopener">arch的wiki</a>Installation guide(安装指南)，写的很详细，最好看英文的，中文的翻译有点延迟。</p>
+<h3 id="联网"><a href="#联网" class="headerlink" title="联网"></a>联网</h3><p>如果你是有线网络，插上网线，启动<a href="https://wiki.archlinux.org/index.php/Dhcpcd" target="_blank" rel="noopener">dhcpd</a>服务（也就是动态获取ip）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start dhcpcd</span><br></pre></td></tr></table></figure>
+<p>无线网络用wifi-menu链接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wifi-menu</span><br></pre></td></tr></table></figure>
+<p>看看链接成功了没 查看下ip</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip addr</span><br></pre></td></tr></table></figure>
+<p>如果没成功，或者其他的联网方式，看看<a href="https://wiki.archlinux.org/index.php/Network_configuration" target="_blank" rel="noopener">arch的wiki</a></p>
+<p>其实说到这，再次提醒大家，看<a href="https://wiki.archlinux.org/" target="_blank" rel="noopener">arch的wiki</a></p>
+<p>连上网络了，开工吧!</p>
+<h3 id="分区："><a href="#分区：" class="headerlink" title="分区："></a>分区：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/sda</span><br></pre></td></tr></table></figure>
+<p>进入fdisk之后按<code>p</code>，看看现有分区的情况<br>这是我的硬盘分区情况，硬盘格式<code>gpt</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/dev/sda1        2048     923647    921600   450M Windows 恢复环境</span><br><span class="line">/dev/sda2      923648    1128447    204800   100M EFI 系统</span><br><span class="line">/dev/sda3     1128448    1161215     32768    16M Microsoft 保留</span><br><span class="line">/dev/sda4     1161216  209256750 208095535  99.2G Microsoft 基本数据</span><br><span class="line">/dev/sda5   209258496  210888703   1630208   796M Windows 恢复环境</span><br><span class="line">/dev/sda6   210890752  462559542 251668791   120G Microsoft 基本数据</span><br></pre></td></tr></table></figure>
+<p>假如我的硬盘中空闲空间100GB，用fdisk 给这100GB分一分</p>
+<p>我的方案是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/dev/sda7    /boot           ext4    500MB    #boot启动分区 500MB够用了</span><br><span class="line">/dev/sda8    swap                        8GB         #交换分区， 我的内存也8GB，我就分一样大小了</span><br><span class="line">/dev/sda9    /                   ext4                   #剩下的全给 / 根分区</span><br></pre></td></tr></table></figure>
+<p>根据自己的空间大小自行调整。</p>
+<p>格式化：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext4 /dev/sda7</span><br><span class="line">mkfs.ext4 /dev/sda9</span><br><span class="line">mkswap /dev/sda8</span><br></pre></td></tr></table></figure>
+<h3 id="安装基础系统"><a href="#安装基础系统" class="headerlink" title="安装基础系统"></a>安装基础系统</h3><p>挂载分区：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/sda9 /mnt</span><br><span class="line">mkdir /mnt/boot</span><br><span class="line">mount /dev/sda7 /mnt/boot</span><br><span class="line">mkdir /mnt/boot/EFI</span><br><span class="line">mount /dev/sda2 /mnt/boot/EFI          #这个EFI分区在分区情况里面能看到我的是sda2</span><br><span class="line">swapon /dev/sda8</span><br></pre></td></tr></table></figure>
+<p>修改源：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/pacman.d/mirrorlist</span><br></pre></td></tr></table></figure>
+<p>把163，ustc这几个比较好使的中国源复制到文件最上面，到时候下载安装的时候跑的快一点</p>
+<p>开始安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacstrap -i /mnt base vim dialog wpa_supplicant</span><br></pre></td></tr></table></figure>
+<p>base是基础系统，dialog是上面提到的链接无线网的wifi-menu，wpa_supplicant也是手动链接无线网的包，vim 不解释 </p>
+<p>安装完成之后</p>
+<p>把分区挂载情况写入fstab中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">genfstab -U -p /mnt &gt; /mnt/etc/fstab</span><br></pre></td></tr></table></figure>
+
+<p>chroot进新系统：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arch-chroot /mnt /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>一些配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">echo &apos;my-archlinux&apos; &gt; /etc/hostname     #设置主机名字</span><br><span class="line">ln -sf /usr/share/zoneinfo/Asia/Shanghai   #设置时区</span><br><span class="line">timedatectl set-timezone Asia/Shanghai      #也可以用这个设置时区</span><br><span class="line">timedatectl set-ntp true        # 设置时间ntp同步网络时间</span><br><span class="line">vim /etc/locale.gen     # 区域设置 取消英文（en_US.UTF-8）和中文(zh_CN.UTF-8)的注释</span><br><span class="line">locale-gen      #生成设置区域设置</span><br><span class="line">echo &quot;LANG=en_US.UTF-8&quot; &gt; /etc/locale.conf #设置语言，因为先安装的是没桌面的模式，先用英文，中文会显示成小方块</span><br></pre></td></tr></table></figure>
+<p> 创建初始内存盘<a href="https://wiki.archlinux.org/index.php/Mkinitcpio" target="_blank" rel="noopener">mkinitcpio</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkinitcpio -p linux</span><br></pre></td></tr></table></figure>
+<p>设置root密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd</span><br></pre></td></tr></table></figure>
+<p>这步忘了，你就进不去系统了，╮(╯▽╰)╭</p>
+<p>搞定启动项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pacman -S grub efibootmgr       #安装grub efibootmgr管理启动项</span><br><span class="line">grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=arch_grub --recheck</span><br><span class="line">pacman -S os-prober     #安装这个包是为了让grub-mkconfig发现win10的启动项</span><br><span class="line">grub-mkconfig -o /boot/grub/grub.cfg   #把启动项写到文件配置里</span><br></pre></td></tr></table></figure>
+<p>如果win10的启动项没有被发现，不要着急，在新的系统安装重启之后，重新执行上面<code>grub-mkconfig</code>命令就行了</p>
+<p>退出新系统,重启</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exit        #退出</span><br><span class="line">unmout -R /mnt  #取消挂载磁盘</span><br><span class="line">reboot   #重启</span><br></pre></td></tr></table></figure>
+
+<p>好了如果一切顺利，重启之后就能看到你的新系统了  (。・∀・)ノ </p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Archlinux/" rel="tag">Archlinux</a>, <a class="has-link-grey -link" href="/tags/EFI/" rel="tag">EFI</a>, <a class="has-link-grey -link" href="/tags/Linux/" rel="tag">Linux</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<div class="notification is-danger">
+    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2017-09-17-win10%E5%AD%90%E7%B3%BB%E7%BB%9Fubuntu%E6%9B%B4%E6%8D%A2%E6%BA%90/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Win10子系统ubuntu更换源</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2017-09-09-%E8%87%AA%E5%B7%B1%E5%AE%9E%E7%8E%B0AJAX%E5%BC%82%E6%AD%A5%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/">
+                <span class="level-item">自己实现AJAX异步上传文件</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/avatar.png" alt="Your name">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Your name
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Your title
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Your location</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        40
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        26
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        44
+                    </p>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/ppoffice">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Docker/">
+            <span class="level-start">
+                <span class="level-item">Docker</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Docker/PHP/">
+            <span class="level-start">
+                <span class="level-item">PHP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Git/">
+            <span class="level-start">
+                <span class="level-item">Git</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Git/PHP/">
+            <span class="level-start">
+                <span class="level-item">PHP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/JavaScript/">
+            <span class="level-start">
+                <span class="level-item">JavaScript</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/JavaScript/HTML5/">
+            <span class="level-start">
+                <span class="level-item">HTML5</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/JavaScript/PHP/">
+            <span class="level-start">
+                <span class="level-item">PHP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Linux/">
+            <span class="level-start">
+                <span class="level-item">Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Linux/Git/">
+            <span class="level-start">
+                <span class="level-item">Git</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/MySQL/">
+            <span class="level-start">
+                <span class="level-item">MySQL</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/PHP/">
+            <span class="level-start">
+                <span class="level-item">PHP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Queue/">
+            <span class="level-start">
+                <span class="level-item">Queue</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Queue/PHP/">
+            <span class="level-start">
+                <span class="level-item">PHP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Rust/">
+            <span class="level-start">
+                <span class="level-item">Rust</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/SSH/">
+            <span class="level-start">
+                <span class="level-item">SSH</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/github-issue/">
+            <span class="level-start">
+                <span class="level-item">github-issue</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/nginx/">
+            <span class="level-start">
+                <span class="level-item">nginx</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/python/">
+            <span class="level-start">
+                <span class="level-item">python</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E4%BA%92%E8%81%94%E7%BD%91/">
+            <span class="level-start">
+                <span class="level-item">互联网</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2/">
+            <span class="level-start">
+                <span class="level-item">全文搜索</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%90%AC%E9%A3%8E%E9%9B%A8/">
+            <span class="level-start">
+                <span class="level-item">听风雨</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%B2%81%E6%9C%88%E9%9D%99%E5%A5%BD/">
+            <span class="level-start">
+                <span class="level-item">岁月静好</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">
+            <span class="level-start">
+                <span class="level-item">搜索引擎</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E5%AD%A6/">
+            <span class="level-start">
+                <span class="level-item">数学</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E5%AD%A6/JavaScript/">
+            <span class="level-start">
+                <span class="level-item">JavaScript</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/%E8%B5%84%E6%BA%90/">
+            <span class="level-start">
+                <span class="level-item">资源</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/AJAX/" style="font-size: 12px;">AJAX</a> <a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/AlpineLinux/" style="font-size: 10px;">AlpineLinux</a> <a href="/tags/Archlinux/" style="font-size: 10px;">Archlinux</a> <a href="/tags/Composer/" style="font-size: 12px;">Composer</a> <a href="/tags/Docker/" style="font-size: 16px;">Docker</a> <a href="/tags/EFI/" style="font-size: 10px;">EFI</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/HTML5/" style="font-size: 12px;">HTML5</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JSON/" style="font-size: 10px;">JSON</a> <a href="/tags/JavaScript/" style="font-size: 16px;">JavaScript</a> <a href="/tags/LaTex/" style="font-size: 10px;">LaTex</a> <a href="/tags/Linux/" style="font-size: 18px;">Linux</a> <a href="/tags/MSYS2/" style="font-size: 10px;">MSYS2</a> <a href="/tags/MathJax/" style="font-size: 10px;">MathJax</a> <a href="/tags/MySQL/" style="font-size: 12px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Rust/" style="font-size: 10px;">Rust</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/UEditor/" style="font-size: 10px;">UEditor</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="/tags/Win10/" style="font-size: 12px;">Win10</a> <a href="/tags/Yii2/" style="font-size: 10px;">Yii2</a> <a href="/tags/github-issue/" style="font-size: 10px;">github-issue</a> <a href="/tags/gitment/" style="font-size: 10px;">gitment</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/pcntl/" style="font-size: 10px;">pcntl</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/%E4%BA%92%E8%81%94%E7%BD%91/" style="font-size: 10px;">互联网</a> <a href="/tags/%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2/" style="font-size: 10px;">全文搜索</a> <a href="/tags/%E5%90%AC%E9%A3%8E%E9%9B%A8/" style="font-size: 12px;">听风雨</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 14px;">容器</a> <a href="/tags/%E5%B2%81%E6%9C%88%E9%9D%99%E5%A5%BD/" style="font-size: 14px;">岁月静好</a> <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 10px;">数学</a> <a href="/tags/%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BE/" style="font-size: 10px;">百度地图</a> <a href="/tags/%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/" style="font-size: 10px;">站内搜索</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" style="font-size: 14px;">虚拟化</a>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019-08-28-ssh-autologin/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SSH使用密码自动登录脚本">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-28T09:19:56.000Z">2019-08-28</time></div>
+                    <a href="/2019-08-28-ssh-autologin/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SSH使用密码自动登录脚本</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-06-15-good-morning/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="阳光明媚，时光静好">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-14T22:50:00.000Z">2019-06-15</time></div>
+                    <a href="/2019-06-15-good-morning/" class="title has-link-black-ter is-size-6 has-text-weight-normal">阳光明媚，时光静好</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E5%B2%81%E6%9C%88%E9%9D%99%E5%A5%BD/">岁月静好</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-06-10-mysql-user/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MySQL权限管理">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-10T04:47:00.000Z">2019-06-10</time></div>
+                    <a href="/2019-06-10-mysql-user/" class="title has-link-black-ter is-size-6 has-text-weight-normal">MySQL权限管理</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/MySQL/">MySQL</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-05-29-linux-symbolic-link/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Linux软连接和硬链接">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-29T03:15:08.000Z">2019-05-29</time></div>
+                    <a href="/2019-05-29-linux-symbolic-link/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Linux软连接和硬链接</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-05-27-math-jax/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="在网页上使用MathJax渲染LaTex格式数学公式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-27T07:12:58.000Z">2019-05-27</time></div>
+                    <a href="/2019-05-27-math-jax/" class="title has-link-black-ter is-size-6 has-text-weight-normal">在网页上使用MathJax渲染LaTex格式数学公式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E5%AD%A6/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AJAX/">
+                        <span class="tag">AJAX</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/API/">
+                        <span class="tag">API</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AlpineLinux/">
+                        <span class="tag">AlpineLinux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Archlinux/">
+                        <span class="tag">Archlinux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Composer/">
+                        <span class="tag">Composer</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Docker/">
+                        <span class="tag">Docker</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EFI/">
+                        <span class="tag">EFI</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ElasticSearch/">
+                        <span class="tag">ElasticSearch</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML5/">
+                        <span class="tag">HTML5</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTTP/">
+                        <span class="tag">HTTP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JSON/">
+                        <span class="tag">JSON</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LaTex/">
+                        <span class="tag">LaTex</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MSYS2/">
+                        <span class="tag">MSYS2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MathJax/">
+                        <span class="tag">MathJax</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MySQL/">
+                        <span class="tag">MySQL</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/PHP/">
+                        <span class="tag">PHP</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Queue/">
+                        <span class="tag">Queue</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Redis/">
+                        <span class="tag">Redis</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Rust/">
+                        <span class="tag">Rust</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SSH/">
+                        <span class="tag">SSH</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UEditor/">
+                        <span class="tag">UEditor</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ubuntu/">
+                        <span class="tag">Ubuntu</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Webhook/">
+                        <span class="tag">Webhook</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Win10/">
+                        <span class="tag">Win10</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Yii2/">
+                        <span class="tag">Yii2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/github-issue/">
+                        <span class="tag">github-issue</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/gitment/">
+                        <span class="tag">gitment</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jupyter/">
+                        <span class="tag">jupyter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/nginx/">
+                        <span class="tag">nginx</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/pcntl/">
+                        <span class="tag">pcntl</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/python/">
+                        <span class="tag">python</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%BA%92%E8%81%94%E7%BD%91/">
+                        <span class="tag">互联网</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2/">
+                        <span class="tag">全文搜索</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%90%AC%E9%A3%8E%E9%9B%A8/">
+                        <span class="tag">听风雨</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%AE%B9%E5%99%A8/">
+                        <span class="tag">容器</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%B2%81%E6%9C%88%E9%9D%99%E5%A5%BD/">
+                        <span class="tag">岁月静好</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">
+                        <span class="tag">搜索引擎</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E5%AD%A6/">
+                        <span class="tag">数学</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BE/">
+                        <span class="tag">百度地图</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/">
+                        <span class="tag">站内搜索</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/">
+                        <span class="tag">虚拟化</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019-08-28-ssh-autologin/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SSH使用密码自动登录脚本">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-28T09:19:56.000Z">2019-08-28</time></div>
+                    <a href="/2019-08-28-ssh-autologin/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SSH使用密码自动登录脚本</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-06-15-good-morning/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="阳光明媚，时光静好">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-14T22:50:00.000Z">2019-06-15</time></div>
+                    <a href="/2019-06-15-good-morning/" class="title has-link-black-ter is-size-6 has-text-weight-normal">阳光明媚，时光静好</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E5%B2%81%E6%9C%88%E9%9D%99%E5%A5%BD/">岁月静好</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-06-10-mysql-user/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MySQL权限管理">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-10T04:47:00.000Z">2019-06-10</time></div>
+                    <a href="/2019-06-10-mysql-user/" class="title has-link-black-ter is-size-6 has-text-weight-normal">MySQL权限管理</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/MySQL/">MySQL</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-05-29-linux-symbolic-link/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Linux软连接和硬链接">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-29T03:15:08.000Z">2019-05-29</time></div>
+                    <a href="/2019-05-29-linux-symbolic-link/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Linux软连接和硬链接</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-05-27-math-jax/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="在网页上使用MathJax渲染LaTex格式数学公式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-27T07:12:58.000Z">2019-05-27</time></div>
+                    <a href="/2019-05-27-math-jax/" class="title has-link-black-ter is-size-6 has-text-weight-normal">在网页上使用MathJax渲染LaTex格式数学公式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E5%AD%A6/JavaScript/">JavaScript</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AJAX/">
+                        <span class="tag">AJAX</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/API/">
+                        <span class="tag">API</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AlpineLinux/">
+                        <span class="tag">AlpineLinux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Archlinux/">
+                        <span class="tag">Archlinux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Composer/">
+                        <span class="tag">Composer</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Docker/">
+                        <span class="tag">Docker</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EFI/">
+                        <span class="tag">EFI</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ElasticSearch/">
+                        <span class="tag">ElasticSearch</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML5/">
+                        <span class="tag">HTML5</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTTP/">
+                        <span class="tag">HTTP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JSON/">
+                        <span class="tag">JSON</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LaTex/">
+                        <span class="tag">LaTex</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MSYS2/">
+                        <span class="tag">MSYS2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MathJax/">
+                        <span class="tag">MathJax</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MySQL/">
+                        <span class="tag">MySQL</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/PHP/">
+                        <span class="tag">PHP</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Queue/">
+                        <span class="tag">Queue</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Redis/">
+                        <span class="tag">Redis</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Rust/">
+                        <span class="tag">Rust</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SSH/">
+                        <span class="tag">SSH</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UEditor/">
+                        <span class="tag">UEditor</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ubuntu/">
+                        <span class="tag">Ubuntu</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Webhook/">
+                        <span class="tag">Webhook</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Win10/">
+                        <span class="tag">Win10</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Yii2/">
+                        <span class="tag">Yii2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/github-issue/">
+                        <span class="tag">github-issue</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/gitment/">
+                        <span class="tag">gitment</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jupyter/">
+                        <span class="tag">jupyter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/nginx/">
+                        <span class="tag">nginx</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/pcntl/">
+                        <span class="tag">pcntl</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/python/">
+                        <span class="tag">python</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%BA%92%E8%81%94%E7%BD%91/">
+                        <span class="tag">互联网</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2/">
+                        <span class="tag">全文搜索</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%90%AC%E9%A3%8E%E9%9B%A8/">
+                        <span class="tag">听风雨</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%AE%B9%E5%99%A8/">
+                        <span class="tag">容器</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%B2%81%E6%9C%88%E9%9D%99%E5%A5%BD/">
+                        <span class="tag">岁月静好</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">
+                        <span class="tag">搜索引擎</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E5%AD%A6/">
+                        <span class="tag">数学</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BE/">
+                        <span class="tag">百度地图</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/">
+                        <span class="tag">站内搜索</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/">
+                        <span class="tag">虚拟化</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="EFI模式下安装win10+Archlinux" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Heropoo&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+<script src="/js/animation.js"></script>
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+    
+    
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+    
+    
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
