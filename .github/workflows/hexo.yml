@@ -13,16 +13,17 @@ jobs:
 
     steps:
     - name: Clean
-      uses: heowc/action-hexo@master
+      uses: heowc/action-hexo@1.0.2
       with:
         args: clean
     - name: Generate
-      uses: heowc/action-hexo@master
+      uses: heowc/action-hexo@1.0.2
       with:
         args: generate
     - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@master
+      uses: heowc/action-hexo@1.0.2
       env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: ./
+        EMAIL: aiyouyou1000@163.com
+        NAME: heropoo
+      with:
+        args: deploy
