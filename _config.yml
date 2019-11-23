@@ -3,20 +3,19 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 满江风雪
-subtitle: Heropoo的个人博客
-description: 满江风雪，Heropoo的个人博客。
-keywords: 满江风雪,heropoo,博客,个人博客
-author: Heropoo
-language: zh-CN
-timezone: Asia/Shanghai
+title: Hexo
+subtitle: ''
+description: ''
+keywords:
+author: John Doe
+language: en
+timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://ioio.com/test
+url: http://yoursite.com
 root: /
-# permalink: :year/:month/:day/:title/
-permalink: :title/
+permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing index.html from permalinks
@@ -38,7 +37,7 @@ titlecase: false # Transform title into titlecase
 external_link:
   enable: true # Open external links in new tab
   field: site # Apply to the whole site
-  exclude:
+  exclude: ''
 filename_case: 0
 render_drafts: false
 post_asset_folder: false
@@ -48,7 +47,7 @@ highlight:
   enable: true
   line_number: true
   auto_detect: false
-  tab_replace:
+  tab_replace: ''
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -92,24 +91,9 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 # theme: landscape
-# theme: vexo
 theme: icarus
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
-
-# Plugins 
-## Docs: https://github.com/hexojs/hexo-generator-feed
-feed:
-  type: atom
-  path: atom.xml
-  limit: 20
-  hub:
-  content:
-  content_limit: 140
-  content_limit_delim: ' '
-  order_by: -date
-  icon: icon.png
-  autodiscovery: true
+  type: ''

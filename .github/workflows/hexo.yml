@@ -22,4 +22,4 @@ jobs:
         BASE_BRANCH: master # The branch the action should deploy from.
         BRANCH: gh-pages # The branch the action should deploy to.
         FOLDER: public # The folder the action should deploy.
-        BUILD_SCRIPT: npm install hexo-cli -g && npm install && hexo g 
+        BUILD_SCRIPT: npm install && npx hexo g 
