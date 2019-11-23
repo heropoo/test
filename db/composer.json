@@ -1,0 +1,25 @@
+{
+    "name": "heropoo/db",
+    "description": "database component",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "database", "orm", "mysql", "sql"
+    ],
+    "authors": [
+        {
+            "name": "Heropoo",
+            "email": "aiyouyou1000@163.com"
+        }
+    ],
+    "require": {
+        "php": ">= 5.4",
+        "ext-json": "*",
+        "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Moon\\Db\\": ""
+        }
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "name": "heropoo/config",
+	"description": "A configuration component",
+    "type": "library",
+	"keywords": [
+        "config", "configuration"
+    ],
+    "authors": [
+        {
+            "name": "Heropoo",
+            "email": "aiyouyou1000@163.com"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">= 5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Moon\\Config\\": ""
+        }
+    }
+}

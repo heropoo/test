@@ -1,0 +1,23 @@
+#!/bin/env php
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Heropoo
+ * Date: 2019/2/6
+ * Time: 19:42
+ */
+
+require_once __DIR__.'/../vendor/autoload.php';
+
+require_once './Commands/PingCommand.php';
+
+$console = new \Moon\Console\Console();
+
+$console->add('hello', function (){
+    return 'Hello world!';
+});
+$console->add('ping', 'PingCommand::ping');
+
+$app = new \Moon\Console\ConsoleApplication();
+$status = $app->handCommand($console);
+exit($status);
