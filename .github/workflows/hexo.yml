@@ -17,6 +17,9 @@ jobs:
       with:
         submodules: true
 
+    - name: Fix Config
+      run: cp _config.yml-theme-icarus themes/icarus/_config.yml
+
     - name: Build and Deploy
       uses: JamesIves/github-pages-deploy-action@master
       env:
