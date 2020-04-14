@@ -3,18 +3,18 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
+title: '满江风雪'
+subtitle: 'Heropoo的个人博客'
 description: ''
 keywords:
-author: John Doe
-language: en
-timezone: ''
+author: Heropoo
+language: zh
+timezone: 'Asia/Shanghai'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://www.ioio.pw/test
-root: /test/
+url: https://heropoo.typephp.top/
+root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
